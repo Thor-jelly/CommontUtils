@@ -1,6 +1,6 @@
 # CommonUtils
 常用工具类   
-[![GitHub release](https://img.shields.io/badge/release-v1.0.0-green.svg)](https://github.com/Thor-jelly/CommontUtils/releases)
+[![GitHub release](https://img.shields.io/badge/release-v1.0.1-green.svg)](https://github.com/Thor-jelly/CommontUtils/releases)
 
 # 添加依赖
 
@@ -14,7 +14,7 @@
 
 
 	dependencies {
-	        compile 'com.github.Thor-jelly:CommonUtils:最新版本'
+	        compile 'com.github.Thor-jelly:CommonUtils:v最新版本号'
 	}
 
 ```
