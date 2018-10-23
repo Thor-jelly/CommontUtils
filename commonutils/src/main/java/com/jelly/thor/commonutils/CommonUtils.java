@@ -13,7 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dongdongwu.commonutils.annotation.Visibility;
+
+import com.jelly.thor.commonutils.annotation.Visibility;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
