@@ -1,10 +1,11 @@
-package com.dongdongwu.commonutils.annotation;
+package com.jelly.thor.commonutils.annotation;
 
-import androidx.annotation.IntDef;
 import android.view.View;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import androidx.annotation.IntDef;
 
 /**
  * 类描述：Visibility注解类 <br/>
