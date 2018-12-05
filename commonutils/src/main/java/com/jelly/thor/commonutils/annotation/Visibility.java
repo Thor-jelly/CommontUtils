@@ -6,6 +6,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import androidx.annotation.IntDef;
+import kotlin.annotation.MustBeDocumented;
 
 /**
  * 类描述：Visibility注解类 <br/>

@@ -1,9 +1,9 @@
 package com.jelly.thor.commonutils
 
 /**
- * 类描述：Boolean扩展 <br/>
+ * 类描述：boolean扩展<br/>
  * 创建人：吴冬冬<br/>
- * 创建时间：2018/9/11 15:37 <br/>
+ * 创建时间：2018/11/15 15:04 <br/>
  */
 sealed class BooleanExt<out T>
 

@@ -7,9 +7,12 @@ import kotlin.reflect.KProperty
 /**
  * 类描述：sharedPreferences属性依赖<br/>
  * 创建人：吴冬冬<br/>
- * 创建时间：2018/9/20 14:00 <br/>
+ * 创建时间：2018/11/15 14:26 <br/>
  */
-class PreferencesBy<T>(private val context: Context, private val key: String = "", private val defaultValue: T, private val sharedPreferencesName: String = "sharedPreferencesName") : ReadWriteProperty<Any, T> {
+class PreferencesBy<T>(private val context: Context,
+                       private val key: String = "",
+                       private val defaultValue: T,
+                       private val sharedPreferencesName: String = "sharedPreferencesName") : ReadWriteProperty<Any, T> {
     private val sharedPreferences by lazy {
         context.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE)
     }
@@ -28,6 +31,7 @@ class PreferencesBy<T>(private val context: Context, private val key: String = "
                 is Long -> getLong(key, defaultValue)
                 is Float -> getFloat(key, defaultValue)
                 is String -> getString(key, defaultValue)
+                is Boolean -> getBoolean(key, defaultValue)
                 else -> throw IllegalArgumentException("不支持该类型")
             }
         } as T
@@ -46,6 +50,7 @@ class PreferencesBy<T>(private val context: Context, private val key: String = "
                 is Long -> putLong(key, value)
                 is Float -> putFloat(key, value)
                 is String -> putString(key, value)
+                is Boolean -> putBoolean(key, value)
                 else -> throw IllegalArgumentException("不支持该类型")
             }
         }.apply()
