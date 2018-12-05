@@ -3,6 +3,7 @@ package com.jelly.thor.commonutils
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.hardware.Camera
 import android.util.TypedValue
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -27,6 +28,7 @@ object CommonUtils {
     /**
      * dp值转换为px值，保证尺寸大小不变
      */
+    @JvmStatic
     fun dp2px(context: Context, value: Float): Int {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, context.resources.displayMetrics).toInt()
     }
@@ -34,6 +36,7 @@ object CommonUtils {
     /**
      * 将sp值转换为px值，保证文字大小不变
      */
+    @JvmStatic
     fun sp2px(context: Context, value: Float): Int {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, value, context.resources.displayMetrics).toInt()
     }
@@ -41,6 +44,7 @@ object CommonUtils {
     /**
      * 关闭软键盘
      */
+    @JvmStatic
     fun closeKeyboard(activity: Activity, vararg editText: EditText) {
         val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
         for (ed in editText) {
@@ -59,6 +63,7 @@ object CommonUtils {
     /**
      * 显示软键盘
      */
+    @JvmStatic
     fun showKeyboard(activity: Activity, editText: EditText) {
         editText.requestFocus()
         val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
@@ -70,6 +75,7 @@ object CommonUtils {
      *
      * @param rule 规则：如1：#,###.00 保留两位小数；2：#,###.## 如果末尾不为零保留2位，为零省略小数部分
      */
+    @JvmStatic
     fun getRuleDecimalFormat(num: String, rule: String): String {
         val decimalFormat = DecimalFormat(rule)
         return decimalFormat.format(num)
@@ -81,6 +87,7 @@ object CommonUtils {
      *
      * @param rule yyyy-MM-dd HH:mm:ss
      */
+    @JvmStatic
     fun getSTime(time: String?, rule: String): String {
         if (time != null) {
             val longTime = time.toLong()
@@ -96,6 +103,7 @@ object CommonUtils {
      *
      * @param rule yyyy-MM-dd HH:mm:ss
      */
+    @JvmStatic
     fun getMSTime(time: String?, rule: String): String {
         if (time != null) {
             val longTime = time.toLong()
@@ -104,5 +112,20 @@ object CommonUtils {
             return format.format(date)
         }
         return "0"
+    }
+
+    /**
+     * 是否有摄像头
+     */
+    @JvmStatic
+    fun hasCamera(): Boolean {
+        //PackageManager pm = GetApplication.get().getApplicationContext().getPackageManager();
+        //pm.hasSystemFeature(PackageManager.FEATURE_CAMERA)--pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)
+        if (Camera.getNumberOfCameras() > 0) {
+            //Log.d("123===", "具有摄像头！")
+            return true
+        }
+        //Log.d("123===", "不具有摄像头！")
+        return false
     }
 }

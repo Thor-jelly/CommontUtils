@@ -124,3 +124,6 @@ NumberTurnToHz.builder()
 
 ## 自定义日期转换，毫秒传入
 `fun getMSTime(time: String?, rule: String): String`
+
+## 是否具有摄像头
+`fun hasCamera(): Boolean`
