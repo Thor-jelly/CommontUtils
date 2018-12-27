@@ -73,8 +73,8 @@ object NumberUtils {
      */
     @JvmStatic
     fun mul(v1: Double, v2: Double): Double {
-        val b1 = BigDecimal(java.lang.Double.toString(v1))
-        val b2 = BigDecimal(java.lang.Double.toString(v2))
+        val b1 = BigDecimal(v1)
+        val b2 = BigDecimal(v2)
         return b1.multiply(b2).toDouble()
     }
 
@@ -102,14 +102,17 @@ object NumberUtils {
      * @return 两个参数的商
      */
     @JvmStatic
-    fun div(v1: Double, v2: Double, scale: Int): Double {
+    @JvmOverloads
+    fun div(v1: Double, v2: Double, scale: Int = 2): Double {
         if (scale < 0) {
             throw IllegalArgumentException(
-                    "保留位数必需是0或正整数")
+                "保留位数必需是0或正整数"
+            )
         }
         if (v2 == 0.0) {
             throw IllegalArgumentException(
-                    "除数必需非0")
+                "除数必需非0"
+            )
         }
         val b1 = BigDecimal(java.lang.Double.toString(v1))
         val b2 = BigDecimal(java.lang.Double.toString(v2))
@@ -126,14 +129,17 @@ object NumberUtils {
      * @return 两个参数的商
      */
     @JvmStatic
-    fun div(v1: String, v2: String, scale: Int): Double {
+    @JvmOverloads
+    fun div(v1: String, v2: String, scale: Int = 2): Double {
         if (scale < 0) {
             throw IllegalArgumentException(
-                    "保留位数必需是0或正整数")
+                "保留位数必需是0或正整数"
+            )
         }
         if (v2 == "0" || v2.trim() == "") {
             throw IllegalArgumentException(
-                    "除数必需非0")
+                "除数必需非0"
+            )
         }
         val b1 = BigDecimal(v1)
         val b2 = BigDecimal(v2)

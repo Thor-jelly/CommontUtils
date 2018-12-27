@@ -3,6 +3,7 @@ package com.jelly.thor.example
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.jelly.thor.commonutils.ActivityUtils
 import com.jelly.thor.commonutils.no
 import com.jelly.thor.commonutils.otherwise
 import com.jelly.thor.commonutils.yes
@@ -22,8 +23,8 @@ class MainActivity : AppCompatActivity() {
             Log.d("123===", "false")
             2
         }
+        Log.d("123===", "-->$otherwise")
 
-        Log.d("123===", "-->${otherwise}")
 
         val otherwise1 = false.yes {
             Log.d("123===", "true")
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("123===", "false")
             4
         }
-        Log.d("123===", "-->${otherwise1}")
+        Log.d("123===", "-->$otherwise1")
 
 
         val otherwise2 = true.no {
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("123===", "false")
             6
         }
-        Log.d("123===", "-->${otherwise2}")
+        Log.d("123===", "-->$otherwise2")
 
 
         val otherwise3 = false.no {
@@ -52,6 +53,6 @@ class MainActivity : AppCompatActivity() {
             Log.d("123===", "false")
             8
         }
-        Log.d("123===", "-->${otherwise3}")
+        Log.d("123===", "-->$otherwise3")
     }
 }

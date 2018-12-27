@@ -127,3 +127,7 @@ NumberTurnToHz.builder()
 
 ## 是否具有摄像头
 `fun hasCamera(): Boolean`
+
+# Activity管理类
+
+`ActivityUtils`
