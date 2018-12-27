@@ -1,6 +1,6 @@
 # 工具类
 常用工具类   
-[![GitHub release](https://img.shields.io/badge/release-v1.0.4-green.svg)](https://github.com/Thor-jelly/CommontUtils/releases)
+[![GitHub release](https://img.shields.io/badge/release-v1.0.5-green.svg)](https://github.com/Thor-jelly/CommontUtils/releases)
 
 # 添加依赖
 
