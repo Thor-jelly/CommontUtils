@@ -76,7 +76,7 @@ object CommonUtils {
      * @param rule 规则：如1：#,###.00 保留两位小数；2：#,###.## 如果末尾不为零保留2位，为零省略小数部分
      */
     @JvmStatic
-    fun getRuleDecimalFormat(num: String, rule: String): String {
+    fun getRuleDecimalFormat(num: Double, rule: String): String {
         val decimalFormat = DecimalFormat(rule)
         return decimalFormat.format(num)
     }
