@@ -51,6 +51,7 @@ object ActivityUtils{
     fun finish(activityClass: Class<out AppCompatActivity>) {
         val iterator = mActivityList.iterator()
         for (activity in iterator) {
+            //如果遍历删除有问题，可以参考EventBus取消注册的方法
             activity.takeIf {
                 //getCanonicalName 可以获取对应包名下的activity 这样可以防止关闭不同包下相同名称的activity
                 it::class.java.canonicalName == activityClass.canonicalName
