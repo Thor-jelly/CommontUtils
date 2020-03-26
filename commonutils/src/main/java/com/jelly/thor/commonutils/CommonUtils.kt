@@ -17,30 +17,6 @@ import java.util.*
  * 创建时间：2018/5/30 18:41 <br></br>
  */
 object CommonUtils {
-//    /**
-//     * 将px值转换为dip或dp值，保证尺寸大小不变
-//     */
-//    fun px2dp(context: Context, pxValue: Float): Int {
-//        val scale = context.resources.displayMetrics.density
-//        return (pxValue / scale + 0.5f).toInt()
-//    }
-
-    /**
-     * dp值转换为px值，保证尺寸大小不变
-     */
-    @JvmStatic
-    fun dp2px(context: Context, value: Float): Int {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, context.resources.displayMetrics).toInt()
-    }
-
-    /**
-     * 将sp值转换为px值，保证文字大小不变
-     */
-    @JvmStatic
-    fun sp2px(context: Context, value: Float): Int {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, value, context.resources.displayMetrics).toInt()
-    }
-
     /**
      * 关闭软键盘
      */
@@ -68,17 +44,6 @@ object CommonUtils {
         editText.requestFocus()
         val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
         imm?.showSoftInput(editText, 0)
-    }
-
-    /**
-     * 格式化数字
-     *
-     * @param rule 规则：如1：#,###.00 保留两位小数；2：#,###.## 如果末尾不为零保留2位，为零省略小数部分
-     */
-    @JvmStatic
-    fun getRuleDecimalFormat(num: Double, rule: String): String {
-        val decimalFormat = DecimalFormat(rule)
-        return decimalFormat.format(num)
     }
 
     /**
