@@ -85,8 +85,8 @@ NumberTurnToHz.builder()
 
 # Int扩展
 
-`fun Int.dp2px(context: Context): Int`
-`fun Int.sp2px(context: Context): Int `
+`fun Int.dp2px(context: Context): Int`  
+`fun Int.sp2px(context: Context): Int`
 
 # String扩展
 
