@@ -1,6 +1,6 @@
 # 工具类
 常用工具类   
-[![GitHub release](https://img.shields.io/badge/release-v1.0.5-green.svg)](https://github.com/Thor-jelly/CommontUtils/releases)
+[![GitHub release](https://img.shields.io/badge/release-v1.0.6-green.svg)](https://github.com/Thor-jelly/CommontUtils/releases)
 
 # 添加依赖
 
@@ -85,7 +85,7 @@ NumberTurnToHz.builder()
 
 # Int扩展
 
-`fun Int.dp2px(context: Context): Int`  
+`fun Int.dp2px(context: Context): Int`
 `fun Int.sp2px(context: Context): Int`
 
 # String扩展
