@@ -32,17 +32,17 @@ abstract class DFBase : AppCompatDialogFragment() {
         return inflater.inflate(createView(), container, false)
     }
 
-    protected fun setOutClick() {
+    protected open fun setOutClick() {
         //外部点击事件
         //isCancelable = true
         //dialog?.setCanceledOnTouchOutside(false)
     }
 
-    protected fun setOutBackgroundDrawableTransparent(window: Window) {
+    protected open fun setOutBackgroundDrawableTransparent(window: Window) {
         //window.setDimAmount(0F)
     }
 
-    protected fun setBackgroundDrawable(window: Window) {
+    protected open fun setBackgroundDrawable(window: Window) {
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
@@ -76,7 +76,7 @@ abstract class DFBase : AppCompatDialogFragment() {
     /**
      * 设置dialogFragment参数
      */
-    protected fun setDialogParams(window: Window) {
+    protected open fun setDialogParams(window: Window) {
         //val point = Point()
         //window.windowManager.defaultDisplay.getSize(point)
 
