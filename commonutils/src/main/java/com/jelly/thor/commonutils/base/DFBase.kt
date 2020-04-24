@@ -21,11 +21,11 @@ abstract class DFBase : AppCompatDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        val window = dialog!!.window
-        if (window != null) {
-            setBackgroundDrawable(window)
-            setOutBackgroundDrawableTransparent(window)
+        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val window = dialog?.window
+        window?.let {
+            setBackgroundDrawable(it)
+            setOutBackgroundDrawableTransparent(it)
         }
         //外部点击事件
         setOutClick()
@@ -53,6 +53,7 @@ abstract class DFBase : AppCompatDialogFragment() {
      */
     @LayoutRes
     abstract fun createView(): Int
+
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
@@ -65,6 +66,7 @@ abstract class DFBase : AppCompatDialogFragment() {
      * 在onViewCreated中初始化View
      */
     protected abstract fun initView(view: View?)
+
     override fun onStart() {
         super.onStart()
         val window = dialog?.window
