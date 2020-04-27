@@ -1,10 +1,13 @@
 package com.jelly.thor.commonutils
 
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
+import android.text.style.ReplacementSpan
 import android.text.style.StyleSpan
 import android.util.TypedValue
 import android.widget.TextView
@@ -72,18 +75,18 @@ fun TextView?.setMoreStyle(
     }
     val ssb = SpannableStringBuilder()
     itemArray.forEachIndexed { index, textBoldStyle ->
-        textBoldStyle?.let {
-            ssb.append(it.textStr)
+        textBoldStyle?.run {
+            ssb.append(textStr)
             val startI = if (index == 0) {
                 0
             } else {
-                ssb.length - it.textStr.length
+                ssb.length - textStr.length
             }
 
             //设置颜色
-            if (it.color != -1) {
+            if (color != -1) {
                 ssb.setSpan(
-                    ForegroundColorSpan(it.color),
+                    ForegroundColorSpan(color),
                     startI,
                     ssb.length,
                     Spannable.SPAN_INCLUSIVE_EXCLUSIVE
@@ -91,9 +94,9 @@ fun TextView?.setMoreStyle(
             }
 
             //设置粗细
-            if (it.style != Style.NO_SET) {
+            if (style != Style.NO_SET) {
                 ssb.setSpan(
-                    StyleSpan(it.style),
+                    StyleSpan(style),
                     startI,
                     ssb.length,
                     Spannable.SPAN_INCLUSIVE_EXCLUSIVE
@@ -101,11 +104,51 @@ fun TextView?.setMoreStyle(
             }
 
             //设置字体大小
-            if (it.textSize != -1) {
+            if (textSize != -1) {
                 ssb.setSpan(
-                    AbsoluteSizeSpan(it.textSize),
+                    AbsoluteSizeSpan(textSize),
                     startI,
                     ssb.length,
+                    Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                )
+            }
+
+            //设置段落高度
+            if (paragraphHeight != -1) {
+                ssb.setSpan(
+                    object : ReplacementSpan() {
+                        override fun getSize(
+                            paint: Paint,
+                            text: CharSequence?,
+                            start: Int,
+                            end: Int,
+                            fm: Paint.FontMetricsInt?
+                        ): Int {
+                            if (fm != null) {
+                                //return后宽度为0，因此实际空隙和段落开始在同一行，需要加上一行的高度
+                                fm.top = -paragraphHeight - paint.getFontMetricsInt(fm)
+                                fm.ascent = fm.top
+                                fm.bottom = 0
+                                fm.descent = fm.bottom
+                            }
+                            return 0
+                        }
+
+                        override fun draw(
+                            canvas: Canvas,
+                            text: CharSequence?,
+                            start: Int,
+                            end: Int,
+                            x: Float,
+                            top: Int,
+                            y: Int,
+                            bottom: Int,
+                            paint: Paint
+                        ) {
+                        }
+                    },
+                    startI,
+                    startI + 7,
                     Spannable.SPAN_INCLUSIVE_EXCLUSIVE
                 )
             }
