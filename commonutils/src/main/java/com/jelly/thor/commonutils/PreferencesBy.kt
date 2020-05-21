@@ -9,17 +9,19 @@ import kotlin.reflect.KProperty
  * 创建人：吴冬冬<br/>
  * 创建时间：2018/11/15 14:26 <br/>
  */
-class PreferencesBy<T>(private val context: Context,
-                       private val key: String = "",
-                       private val defaultValue: T,
-                       private val sharedPreferencesName: String = "sharedPreferencesName") : ReadWriteProperty<Any, T> {
+class PreferencesBy<T>(
+    private val context: Context,
+    private val defaultValue: T,
+    private val key: () -> String = { "" },
+    private val sharedPreferencesName: String = "sharedPreferencesName"
+) : ReadWriteProperty<Any, T> {
     private val sharedPreferences by lazy {
         context.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE)
     }
 
 
     override fun getValue(thisRef: Any, property: KProperty<*>): T {
-        val newKey = if (key.isEmpty()) property.name else key
+        val newKey = if (key().isEmpty()) property.name else key()
         return getSharedPreferences(newKey, defaultValue)
     }
 
@@ -38,7 +40,7 @@ class PreferencesBy<T>(private val context: Context,
     }
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: T) {
-        val newKey = if (key.isEmpty()) property.name else key
+        val newKey = if (key().isEmpty()) property.name else key()
         putSharedPreferencesValue(newKey, value)
     }
 
