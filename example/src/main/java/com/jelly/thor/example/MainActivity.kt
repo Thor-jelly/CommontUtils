@@ -1,9 +1,17 @@
 package com.jelly.thor.example
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jelly.thor.commonutils.*
+import com.jelly.thor.commonutils.base.rv.BaseRecyclerViewAdapter
+import com.jelly.thor.commonutils.base.rv.BaseViewHolder
+import com.jelly.thor.commonutils.base.rv.UniversalItemDecoration
 import com.jelly.thor.commonutils.bean.TextMoreStyle
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -15,6 +23,37 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //testTextEt()
+        //testRv()
+    }
+
+    private fun testRv() {
+        rv.setNewVisibility(View.VISIBLE)
+        val list = listOf<String>(
+            "1",
+            "1"
+        )
+        rv.addItemDecoration(
+            UniversalItemDecoration(
+                10.dp2px(this),
+                ColorDrawable(Color.WHITE),
+                true
+            )
+        )
+//        val ll = LinearLayoutManager(this)
+        val ll = GridLayoutManager(this, 2)
+        ll.orientation = RecyclerView.VERTICAL
+        rv.layoutManager = ll
+        rv.adapter = object : BaseRecyclerViewAdapter<String>(R.layout.item_a_test_rv, null) {
+            override fun convert(holder: BaseViewHolder, t: String, position: Int) {
+
+            }
+        }
+
+    }
+
+    private fun testTextEt() {
+        tv.setNewVisibility(View.VISIBLE)
         tv.setMoreStyle(
             TextMoreStyle
                 .builder("Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!\n")

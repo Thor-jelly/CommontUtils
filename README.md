@@ -21,6 +21,19 @@
 
 ---
 
+# 基础rv
+
+## 基本adapter `BaseRecyclerViewAdapter`
+
+需要注意如果是有无数据模型时 不能通过notifyItemInserted(0)插入第一条数据，只能通过notifyItemChanged(0)更新
+无图暂时支持线性布局，如果非要GridLayoutManager实现无图展示，需要动态设置setSpanSizeLookup 根据状态动态改变数列个数
+
+## 基本ViewHolder `BaseViewHolder`
+
+## 基本分割线 `UniversalItemDecoration`
+
+## 无数据模式 `NoDataTypeSealed` ，自定义类继承该抽象类，可以参考 `NoDataTypeEnumE`
+
 # Activity管理类
 
 `ActivityUtils`
