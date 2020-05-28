@@ -24,7 +24,7 @@ private const val MODE_GRID_HORIZONTAL = 2
 private const val MODE_GRID_VERTICAL = 3
 
 class UniversalItemDecoration @JvmOverloads constructor(
-    private val width: Int = 1,
+    private val widthPx: Int = 1,
     private val divider: Drawable = ColorDrawable(Color.TRANSPARENT),
     private val isShowLastLineDecoration: Boolean = false
 ) : RecyclerView.ItemDecoration() {
@@ -49,7 +49,7 @@ class UniversalItemDecoration @JvmOverloads constructor(
                 //如果是线性水平布局
                 if (nowViewPosition != parent.adapter!!.itemCount - 1 || isShowLastLineDecoration) {
                     //如果是最后一行则不显示
-                    outRect.right = width
+                    outRect.right = widthPx
                 } else {
                     outRect.right = 0
                 }
@@ -58,7 +58,7 @@ class UniversalItemDecoration @JvmOverloads constructor(
                 //如果是线性垂直布局
                 if (nowViewPosition != parent.adapter!!.itemCount - 1 || isShowLastLineDecoration) {
                     //如果是最后一行则不显示
-                    outRect.bottom = width
+                    outRect.bottom = widthPx
                 } else {
                     outRect.bottom = 0
                 }
@@ -70,8 +70,8 @@ class UniversalItemDecoration @JvmOverloads constructor(
                 val spanCount = nowGridLM.spanCount
                 //当前所在列
                 val nowColumn = (nowViewPosition % spanCount) + 1
-                val top = (nowColumn - 1) * width / spanCount
-                val bottom = (spanCount - nowColumn) * width / spanCount
+                val top = (nowColumn - 1) * widthPx / spanCount
+                val bottom = (spanCount - nowColumn) * widthPx / spanCount
 
                 //最后一行没有下间距
                 //其他都有
@@ -88,7 +88,7 @@ class UniversalItemDecoration @JvmOverloads constructor(
                     ((nowViewPosition + 1) / spanCount + if ((nowViewPosition + 1) % spanCount == 0) 0 else 1) == lineCount
                 var right = 0
                 if (!isLastLine) {
-                    right = width
+                    right = widthPx
                 }
                 outRect.top = top
                 outRect.bottom = bottom
@@ -102,8 +102,8 @@ class UniversalItemDecoration @JvmOverloads constructor(
                 val spanCount = nowGridLM.spanCount
                 //当前所在列
                 val nowColumn = (nowViewPosition % spanCount) + 1
-                val left = (nowColumn - 1) * width / spanCount
-                val right = (spanCount - nowColumn) * width / spanCount
+                val left = (nowColumn - 1) * widthPx / spanCount
+                val right = (spanCount - nowColumn) * widthPx / spanCount
 
                 //最后一行没有下间距
                 //其他都有
@@ -120,7 +120,7 @@ class UniversalItemDecoration @JvmOverloads constructor(
                     ((nowViewPosition + 1) / spanCount + if ((nowViewPosition + 1) % spanCount == 0) 0 else 1) == lineCount
                 var bottom = 0
                 if (!isLastLine) {
-                    bottom = width
+                    bottom = widthPx
                 }
                 outRect.top = 0
                 outRect.bottom = bottom
@@ -199,7 +199,7 @@ class UniversalItemDecoration @JvmOverloads constructor(
                     ) {
                         left
                     } else {
-                        left + width
+                        left + widthPx
                     }
                 }
                 MODE_GRID_HORIZONTAL -> {
@@ -219,11 +219,11 @@ class UniversalItemDecoration @JvmOverloads constructor(
                     if (!isShowLastLineDecoration && isLastLine) {
                         left
                     } else {
-                        left + width
+                        left + widthPx
                     }
                 }
                 else -> {
-                    left + width
+                    left + widthPx
                 }
             }
 
@@ -255,7 +255,7 @@ class UniversalItemDecoration @JvmOverloads constructor(
                     ) {
                         top
                     } else {
-                        top + width
+                        top + widthPx
                     }
                 }
                 MODE_GRID_VERTICAL -> {
@@ -275,11 +275,11 @@ class UniversalItemDecoration @JvmOverloads constructor(
                     if (!isShowLastLineDecoration && isLastLine) {
                         top
                     } else {
-                        top + width
+                        top + widthPx
                     }
                 }
                 else -> {
-                    top + width
+                    top + widthPx
                 }
             }
 
@@ -314,11 +314,11 @@ class UniversalItemDecoration @JvmOverloads constructor(
                     if (!isShowLastLineDecoration && isLastLine) {
                         child.right
                     } else {
-                        child.right + width
+                        child.right + widthPx
                     }
                 }
                 else -> {
-                    child.right + width
+                    child.right + widthPx
                 }
             }
 

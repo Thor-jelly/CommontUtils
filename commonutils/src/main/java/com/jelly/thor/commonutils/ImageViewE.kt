@@ -10,16 +10,19 @@ import androidx.annotation.DrawableRes
  */
 //@JvmOverloads
 //fun ImageView.glideIntoAsBitmapPath(path: Any?,
+//                                    roundDp: Int = 0,
 //                                    @DrawableRes loadingPic: Int = R.drawable.ic_circular_picture_loading,
 //                                    @DrawableRes errorPic: Int = R.drawable.ic_circular_picture_error,
 //                                    @DrawableRes noPic: Int = R.drawable.ic_circular_picture_no
 //) {
-//    val requestOptions = RequestOptions()
+//    var requestOptions = RequestOptions()
 //        .placeholder(loadingPic)
 //        .error(errorPic)
 //        .fallback(errorPic)
-//
-//    Glide.with(BaseApplication.getInstance().applicationContext)
+//    if (roundDp > 0) {
+//        requestOptions = requestOptions.transform(RoundedCorners(roundDp.dp2px()))
+//    }
+//    Glide.with(QiyaApp.getInstance().applicationContext)
 //        .asBitmap()
 //        .apply(requestOptions)
 //        .load(

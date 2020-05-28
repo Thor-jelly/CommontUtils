@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         )
         rv.addItemDecoration(
             UniversalItemDecoration(
-                10.dp2px(this),
+                15,
                 ColorDrawable(Color.WHITE),
                 true
             )
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 .build(),
             TextMoreStyle
                 .builder("123456777343453453")
-                .setParagraphHeight(12.dp2px(this))
+                .setParagraphHeight(12)
                 .build(),
             TextMoreStyle
                 .builder("Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!")
