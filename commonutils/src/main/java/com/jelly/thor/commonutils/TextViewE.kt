@@ -19,46 +19,55 @@ import com.jelly.thor.commonutils.bean.TextMoreStyle
  * 创建人：吴冬冬<br/>
  * 创建时间：2019/6/24 13:47 <br/>
  */
-/*enum class FontStyleEnum {
-    GT_WALSHEIM_BOLD,
-    GT_WALSHEIM_REGULAR,
-    GT_WALSHEIM_LIGHT
-}
-
-//main\assets
-//main\res\font
-private val GT_WALSHEIM_BOLD = Typeface.createFromAsset(applicationContext.assets, "fonts/gt_walsheim_bold.ttf")
-        ?: throw IllegalArgumentException("检查字体保存路径是否有：fonts/gt_walsheim_bold.ttf")
-
-private val GT_WALSHEIM_REGULAR = Typeface.createFromAsset(applicationContext.assets, "fonts/gt_walsheim_regular.ttf")
-        ?: throw IllegalArgumentException("检查字体保存路径是否有：fonts/gt_walsheim_regular.ttf")
-
-private val GT_WALSHEIM_LIGHT = Typeface.createFromAsset(applicationContext.assets, "fonts/gt_walsheim_light.ttf")
-        ?: throw IllegalArgumentException("检查字体保存路径是否有：fonts/gt_walsheim_light.ttf")
-
-*/
-/**
- * 设置字体样式，默认不加粗
- *//*
-@JvmOverloads
-fun TextView?.setFontStyle(fontStyle: FontStyleEnum, isBold: Boolean = false) {
-    if (this == null) {
-        return
-    }
-    val typeface = getTypeface(fontStyle)
-    this.typeface = typeface
-    if (isBold) {
-        this.paint.isFakeBoldText = true
-    }
-}
-
-fun getTypeface(fontStyle: FontStyleEnum): Typeface {
-    return when (fontStyle) {
-        FontStyleEnum.GT_WALSHEIM_BOLD -> GT_WALSHEIM_BOLD
-        FontStyleEnum.GT_WALSHEIM_REGULAR -> GT_WALSHEIM_REGULAR
-        FontStyleEnum.GT_WALSHEIM_LIGHT -> GT_WALSHEIM_LIGHT
-    }
-}*/
+//enum class FontStyleEnum {
+//    GT_WALSHEIM_BOLD,
+//    GT_WALSHEIM_REGULAR,
+//    GT_WALSHEIM_LIGHT
+//}
+//
+//private val mFontStyleAp = ArrayMap<FontStyleEnum, Typeface>()
+//
+///**
+// * 设置字体样式，默认不加粗
+// */
+//@JvmOverloads
+//fun TextView?.setFontStyle(fontStyle: FontStyleEnum, isBold: Boolean = false) {
+//    if (this == null) {
+//        return
+//    }
+//
+//    this.typeface = getTypeface(fontStyle)
+//    if (isBold) {
+//        this.paint.isFakeBoldText = true
+//    }
+//}
+//
+//fun getTypeface(fontStyle: FontStyleEnum): Typeface {
+//    when (fontStyle) {
+//        FontStyleEnum.GT_WALSHEIM_BOLD -> {
+//            if (!mFontStyleAp.contains(fontStyle)) {
+//                val typeface = Typeface.createFromAsset(BaseApplication.getInstance().applicationContext.assets, "fonts/gt_walsheim_bold.ttf")
+//                    ?: throw IllegalArgumentException("检查字体保存路径是否有：fonts/gt_walsheim_bold.ttf")
+//                mFontStyleAp[fontStyle] = typeface
+//            }
+//        }
+//        FontStyleEnum.GT_WALSHEIM_REGULAR -> {
+//            if (!mFontStyleAp.contains(fontStyle)) {
+//                val typeface = Typeface.createFromAsset(BaseApplication.getInstance().applicationContext.assets, "fonts/gt_walsheim_regular.ttf")
+//                    ?: throw IllegalArgumentException("检查字体保存路径是否有：fonts/gt_walsheim_regular.ttf")
+//                mFontStyleAp[fontStyle] = typeface
+//            }
+//        }
+//        FontStyleEnum.GT_WALSHEIM_LIGHT -> {
+//            if (!mFontStyleAp.contains(fontStyle)) {
+//                val typeface = Typeface.createFromAsset(BaseApplication.getInstance().applicationContext.assets, "fonts/gt_walsheim_light.ttf")
+//                    ?: throw IllegalArgumentException("检查字体保存路径是否有：fonts/gt_walsheim_light.ttf")
+//                mFontStyleAp[fontStyle] = typeface
+//            }
+//        }
+//    }
+//    return mFontStyleAp[fontStyle]!!
+//}
 
 /**
  * 设置字体样式
