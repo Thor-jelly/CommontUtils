@@ -1,6 +1,7 @@
 package com.jelly.thor.commonutils
 
 import com.jelly.thor.commonutils.bean.TextMoreStyle
+import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -75,13 +76,12 @@ fun String?.formatNumber(
     if (this.isNullOrEmpty()) {
         return df.format(0)
     }
-    val numberD: Double
     try {
-        numberD = this.toDouble()
+        this.toDouble()
     } catch (e: Exception) {
         return df.format(0)
     }
-    return df.format(numberD)
+    return df.format(BigDecimal(this))
 }
 
 /**
