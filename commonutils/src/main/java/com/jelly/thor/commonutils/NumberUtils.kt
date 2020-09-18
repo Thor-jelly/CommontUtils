@@ -18,10 +18,10 @@ object NumberUtils {
      */
     @JvmStatic
     fun add(v1: String, vararg v2: String): String {
-        val b1 = BigDecimal(v1)
+        val b1 = BigDecimal(getStringNumber(v1))
         var all = b1
         for (d in v2) {
-            val b2 = BigDecimal(d)
+            val b2 = BigDecimal(getStringNumber(d))
             all = all.add(b2)
         }
         return all.stripTrailingZeros().toPlainString()
@@ -36,10 +36,10 @@ object NumberUtils {
      */
     @JvmStatic
     fun sub(v1: String, vararg v2: String): String {
-        val b1 = BigDecimal(v1)
+        val b1 = BigDecimal(getStringNumber(v1))
         var all = b1
         for (d in v2) {
-            val b2 = BigDecimal(d)
+            val b2 = BigDecimal(getStringNumber(d))
             all = all.subtract(b2)
         }
         return all.stripTrailingZeros().toPlainString()
@@ -54,13 +54,25 @@ object NumberUtils {
      */
     @JvmStatic
     fun mul(v1: String, vararg v2: String): String {
-        val b1 = BigDecimal(v1)
+        val b1 = BigDecimal(getStringNumber(v1))
         var all = b1
         for (d in v2) {
-            val b2 = BigDecimal(d)
+            val b2 = BigDecimal(getStringNumber(d))
             all = all.multiply(b2)
         }
         return all.stripTrailingZeros().toPlainString()
+    }
+
+    private fun getStringNumber(inputStr: String?): String {
+        return if (inputStr.isNullOrEmpty()) {
+            "0"
+        } else {
+            if (inputStr.trim().isEmpty()) {
+                "0"
+            } else {
+                inputStr
+            }
+        }
     }
 
     /**
