@@ -70,7 +70,16 @@ abstract class DFBase : AppCompatDialogFragment() {
     override fun onStart() {
         super.onStart()
         val window = dialog?.window
-        window?.let { setDialogParams(it) }
+        window?.let {
+            view?.viewTreeObserver?.addOnPreDrawListener(object :
+                ViewTreeObserver.OnPreDrawListener {
+                override fun onPreDraw(): Boolean {
+                    view?.viewTreeObserver?.removeOnPreDrawListener(this)
+                    setDialogParams(it)
+                    return false
+                }
+            })
+        }
     }
 
     /**
