@@ -5,6 +5,7 @@ import android.graphics.Paint
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableStringBuilder
+import android.text.TextPaint
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.ReplacementSpan
@@ -188,18 +189,24 @@ fun TextView?.setShowAllText() {
         if (layout != null) {
             if (layout.getEllipsisCount(this.lineCount - 1) > 0) {
                 //Log.d("123===", "Text is ellipsized");
-                //测量字符串的长度
-                val measureWidth = this.paint.measureText(this.text.toString())
-                //得到TextView 的宽度
-                val width = this.width - this.paddingLeft - this.paddingRight
                 //当前size大小
                 var textSize = this.textSize
-                if (width < measureWidth) {
+                //测量字符串的长度
+                val temPain: TextPaint = TextPaint(this.paint)
+                temPain.textSize = textSize
+                var measureWidth = temPain.measureText(this.text.toString())
+                //得到TextView 的宽度
+                val width = this.width - this.paddingLeft - this.paddingRight
+                while (width < measureWidth) {
                     textSize *= width / measureWidth
+                    temPain.textSize = textSize
+                    measureWidth = temPain.measureText(this.text.toString())
                 }
-                if (textSize < 21) {
+
+                val minSize = 21
+                if (textSize < minSize) {
                     //注意，使用像素大小设置
-                    this.setTextSize(TypedValue.COMPLEX_UNIT_PX, 21f)
+                    this.setTextSize(TypedValue.COMPLEX_UNIT_PX, minSize.toFloat())
                 } else {
                     //注意，使用像素大小设置
                     this.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
