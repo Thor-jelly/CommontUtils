@@ -114,6 +114,9 @@ abstract class BaseRecyclerViewAdapter<T> : RecyclerView.Adapter<BaseViewHolder>
                     mOnItemClickListener!!.onItemClick(null, viewType)
                 } else {
                     val position = viewHolder.adapterPosition
+                    if (position >= itemList?.size ?: 0) {
+                        return@setOnClickListener
+                    }
                     mOnItemClickListener!!.onItemClick(itemList?.get(position), viewType)
                 }
             }
@@ -172,11 +175,16 @@ abstract class BaseRecyclerViewAdapter<T> : RecyclerView.Adapter<BaseViewHolder>
             if (itemList == null) {
                 return
             }
-            convert(holder, itemList!![position], payloads)
+            convert(holder, itemList!![position], position, payloads)
         }
     }
 
-    protected open fun convert(holder: BaseViewHolder, t: T, position: MutableList<Any>) {
+    protected open fun convert(
+        holder: BaseViewHolder,
+        t: T,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
 
     }
 
