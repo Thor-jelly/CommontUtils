@@ -10,6 +10,37 @@ import java.math.RoundingMode
  */
 object NumberUtils {
     /**
+     * 绝对值
+     */
+    @JvmStatic
+    fun abs(v1: String?): String {
+        val b1 = try {
+            BigDecimal(if (v1.isNullOrEmpty()) "0" else v1)
+        } catch (e: Exception) {
+            BigDecimal("0")
+        }
+        return b1.abs().stripTrailingZeros().toPlainString()
+    }
+
+    /**
+     * 比较大小
+     */
+    @JvmStatic
+    fun compareTo(v1: String?, v2: String?): Int {
+        val b1 = try {
+            BigDecimal(if (v1.isNullOrEmpty()) "0" else v1)
+        } catch (e: Exception) {
+            BigDecimal("0")
+        }
+        val b2 = try {
+            BigDecimal(if (v2.isNullOrEmpty()) "0" else v2)
+        } catch (e: Exception) {
+            BigDecimal("0")
+        }
+        return b1.compareTo(b2)
+    }
+
+    /**
      * 提供精确的加法运算。
      *
      * @param v1 被加数
@@ -17,11 +48,19 @@ object NumberUtils {
      * @return 两个参数的和
      */
     @JvmStatic
-    fun add(v1: String, vararg v2: String): String {
-        val b1 = BigDecimal(getStringNumber(v1))
+    fun add(v1: String?, vararg v2: String?): String {
+        val b1 = try {
+            BigDecimal(if (v1.isNullOrEmpty()) "0" else v1)
+        } catch (e: Exception) {
+            BigDecimal("0")
+        }
         var all = b1
         for (d in v2) {
-            val b2 = BigDecimal(getStringNumber(d))
+            val b2 = try {
+                BigDecimal(if (d.isNullOrEmpty()) "0" else d)
+            } catch (e: Exception) {
+                BigDecimal("0")
+            }
             all = all.add(b2)
         }
         return all.stripTrailingZeros().toPlainString()
@@ -35,11 +74,19 @@ object NumberUtils {
      * @return 两个参数的差
      */
     @JvmStatic
-    fun sub(v1: String, vararg v2: String): String {
-        val b1 = BigDecimal(getStringNumber(v1))
+    fun sub(v1: String?, vararg v2: String?): String {
+        val b1 = try {
+            BigDecimal(if (v1.isNullOrEmpty()) "0" else v1)
+        } catch (e: Exception) {
+            BigDecimal("0")
+        }
         var all = b1
         for (d in v2) {
-            val b2 = BigDecimal(getStringNumber(d))
+            val b2 = try {
+                BigDecimal(if (d.isNullOrEmpty()) "0" else d)
+            } catch (e: Exception) {
+                BigDecimal("0")
+            }
             all = all.subtract(b2)
         }
         return all.stripTrailingZeros().toPlainString()
@@ -53,26 +100,22 @@ object NumberUtils {
      * @return 两个参数的积
      */
     @JvmStatic
-    fun mul(v1: String, vararg v2: String): String {
-        val b1 = BigDecimal(getStringNumber(v1))
+    fun mul(v1: String?, vararg v2: String?): String {
+        val b1 = try {
+            BigDecimal(if (v1.isNullOrEmpty()) "0" else v1)
+        } catch (e: Exception) {
+            BigDecimal("0")
+        }
         var all = b1
         for (d in v2) {
-            val b2 = BigDecimal(getStringNumber(d))
+            val b2 = try {
+                BigDecimal(if (d.isNullOrEmpty()) "0" else d)
+            } catch (e: Exception) {
+                BigDecimal("0")
+            }
             all = all.multiply(b2)
         }
         return all.stripTrailingZeros().toPlainString()
-    }
-
-    private fun getStringNumber(inputStr: String?): String {
-        return if (inputStr.isNullOrEmpty()) {
-            "0"
-        } else {
-            if (inputStr.trim().isEmpty()) {
-                "0"
-            } else {
-                inputStr
-            }
-        }
     }
 
     /**
@@ -93,29 +136,37 @@ object NumberUtils {
     @JvmStatic
     @JvmOverloads
     fun div(
-        v1: String,
+        v1: String?,
         scale: Int = 2,
         roundingMode: RoundingMode = RoundingMode.HALF_UP,
         vararg v2: String
     ): String {
-        if (scale < 0) {
-            throw IllegalArgumentException(
-                "保留位数必需是0或正整数"
-            )
+        var newScale = scale
+        if (newScale < 0) {
+            //"保留位数必需是0或正整数"
+            newScale = 2
         }
         if (v2.isEmpty()) {
             throw IllegalArgumentException("除数不能没传")
         }
-        val b1 = BigDecimal(v1)
+        val b1 = try {
+            BigDecimal((if (v1.isNullOrEmpty()) "0" else v1))
+        } catch (e: Exception) {
+            BigDecimal("0")
+        }
         var all = b1
         for (d in v2) {
-            if (d == "0" || d.trim() == "") {
-                throw IllegalArgumentException(
-                    "除数必需非0"
-                )
+            var newD = d
+            if (newD == "0" || newD.trim() == "") {
+                //"除数必需非0"
+                newD = "1"
             }
-            val b2 = BigDecimal(d)
-            all = all.divide(b2, scale, roundingMode)
+            val b2 = try {
+                BigDecimal(newD)
+            } catch (e: Exception) {
+                BigDecimal("1")
+            }
+            all = all.divide(b2, newScale, roundingMode)
         }
         return all.stripTrailingZeros().toPlainString()
     }

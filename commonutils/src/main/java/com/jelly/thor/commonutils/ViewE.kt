@@ -1,5 +1,7 @@
 package com.jelly.thor.commonutils
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.view.View
 import android.view.ViewGroup
 import com.jelly.thor.commonutils.annotation.Visibility
@@ -32,6 +34,19 @@ fun View?.setNewVisibility(@Visibility visibility: Int) {
         return
     }
     this.visibility = visibility
+}
+
+/**
+ * 获取展示在屏幕上view的bitMap
+ */
+fun View?.getBitMap(): Bitmap? {
+    if (this == null) {
+        return null
+    }
+    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(bitmap);
+    draw(canvas);
+    return bitmap
 }
 
 /**
