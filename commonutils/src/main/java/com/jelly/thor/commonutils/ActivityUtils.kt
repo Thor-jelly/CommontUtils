@@ -101,8 +101,8 @@ object ActivityUtils{
             sComponentDensity = appDisplayMetrics.density
             sComponentScaledDensity = appDisplayMetrics.scaledDensity
             application.registerComponentCallbacks(object : ComponentCallbacks {
-                override fun onConfigurationChanged(newConfig: Configuration?) {
-                    if (newConfig != null && newConfig.fontScale > 0) {
+                override fun onConfigurationChanged(newConfig: Configuration) {
+                    if (newConfig.fontScale > 0) {
                         sComponentScaledDensity = application.resources.displayMetrics.scaledDensity
                     }
                 }
